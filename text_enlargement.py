@@ -4,7 +4,7 @@ import OpenGL.GL as gl
 import OpenGL.GLUT as glut
 
 base, texid = 0, 0
-text = '''JKUAT ROCK!'''
+text = '''JKUAT ROCKS!!'''
 
 def on_display():
     global texid
@@ -26,16 +26,27 @@ def on_display():
     # Set initial color
     current_color = [0, 0, 0, 1]
 
+    # for c in text:
+    #     if c.upper() in ('J', 'K', 'U', 'A', 'T'):
+    #         # Set color to green for 'JKUAT'
+    #         current_color = [0, 1, 0, 1]
+    #     elif c.upper() in ('R', 'O', 'C', 'K','S!'):
+    #         # Set color to red for 'ROCK'
+    #         current_color = [1, 0, 0, 1]
+
+    #     gl.glColor(*current_color)
+    #     gl.glCallList(base + ord(c))
     for c in text:
-        if c.upper() in ('J', 'K', 'U', 'A', 'T'):
+        if c.upper() in ('J', 'L', 'U', 'A', 'T'):
             # Set color to green for 'JKUAT'
             current_color = [0, 1, 0, 1]
-        elif c.upper() in ('R', 'O', 'C', 'K','!'):
-            # Set color to red for 'ROCK'
+        elif c.upper() == 'R' or text.startswith('ROCKS!!', text.index(c)):
+            # Set color to red for 'ROCKS!'
             current_color = [1, 0, 0, 1]
 
         gl.glColor(*current_color)
         gl.glCallList(base + ord(c))
+
 
     gl.glPopMatrix()
     glut.glutSwapBuffers()
@@ -118,7 +129,7 @@ if __name__ == '__main__':
     glut.glutInit(sys.argv)
     glut.glutInitDisplayMode(glut.GLUT_DOUBLE | glut.GLUT_RGB | glut.GLUT_DEPTH)
     glut.glutCreateWindow("Freetype OpenGL")
-    glut.glutReshapeWindow(600, 400)
+    glut.glutReshapeWindow(800, 600)
     glut.glutDisplayFunc(on_display)
     glut.glutReshapeFunc(on_reshape)
     glut.glutKeyboardFunc(on_keyboard)
@@ -129,5 +140,5 @@ if __name__ == '__main__':
     gl.glColorMaterial(gl.GL_FRONT_AND_BACK, gl.GL_AMBIENT_AND_DIFFUSE)
     gl.glBlendFunc(gl.GL_SRC_ALPHA, gl.GL_ONE_MINUS_SRC_ALPHA)
     gl.glEnable(gl.GL_TEXTURE_2D)
-    makefont(r'E:\Jkuat units\units 3.2\Computer Graphics\group_6_work_NO_1\DroidSansMono.ttf', 120)
+    makefont(r'DroidSansMono.ttf', 120)
     glut.glutMainLoop()
